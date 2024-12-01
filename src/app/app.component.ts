@@ -9,4 +9,8 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'angular19-signals';
+  counter = 0;
+  constructor(){
+    setInterval(() => {this.counter++}, 1000)
+  }
 }
