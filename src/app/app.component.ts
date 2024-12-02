@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-import { interval } from 'rxjs';
+import { BehaviorSubject, combineLatest, debounceTime, interval, map, withLatestFrom } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,14 +13,24 @@ import { interval } from 'rxjs';
 })
 export class AppComponent {
   title = 'angular19-signals';
+  colors$ = new BehaviorSubject<any>({r: 'Red', g: 'Green', b: 'Blue'})
+  colorKey$ = new BehaviorSubject('r')
+  // slectectedValue$ = combineLatest([this.colors$, this.colorKey$])
+  //                   .pipe(
+  //                     debounceTime(1000),
+  //                     map(([color, key]) => color[key]),
+  //                   )
+  selectedValue$ = this.colorKey$.pipe(withLatestFrom(this.colors$), map(([key, colors]) => colors[key]));
+  constructor(){
+   this.selectedValue$.subscribe(console.log)
+  }
 
-  counter$ = interval(1000)
+  // ColorObj = {r: 'Red', g: 'Green', b: 'Blue'}
+  // key = 'r'
 
-  constructor(){}
-
-  randomNumber(){
-    console.log("Random Number called...")
-    return 100;
+  newColors() {
+    this.colors$.next({y: 'Yelow', o: 'Orange', p: 'Purple'})
+    this.colorKey$.next('o')
   }
 
 }
