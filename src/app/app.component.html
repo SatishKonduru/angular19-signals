@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Counter: {{counter}}</h2>
+  <h2>Counter: {{counter$ | async}}</h2>
   <h2>{{randomNumber()}}</h2>
-  <button class="nothing-btn" (click)="doNothing()" (mousemove)="doNothing()">Do Nothing</button>
+  <!-- <button class="nothing-btn" (click)="doNothing()" (mousemove)="doNothing()">Do Nothing</button> -->
 </div>
