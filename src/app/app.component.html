@@ -3,8 +3,12 @@
 <h2>Green: {{(colors$ | async).r}}</h2>
 <h2>Blue: {{(colors$ | async).r}}</h2>
 <h3>Selected Color Key: {{colorKey$ | async }}</h3> -->
-<h3>Selected Color Values: {{(selectedValue$ | async )}}</h3>
-<button (click)="newColors()">Click Me</button>
+<!-- <h3>Selected Color Values: {{(selectedValue$ | async )}}</h3>
+<button (click)="newColors()">Click Me</button> -->
 <!-- <h5>Selected Color: {{ColorObj[key]}}</h5> -->
   <!-- <button class="nothing-btn" (click)="doNothing()" (mousemove)="doNothing()">Do Nothing</button> -->
+</div>
+
+<div class="container">
+  <h2>first Signal Value: {{firstSignal()}}</h2>
 </div>
