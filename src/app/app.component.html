@@ -11,4 +11,9 @@
 
 <div class="container">
   <h2>first Signal Value: {{firstSignal()}}</h2>
+  <button (click)="setSignal()">setSignal</button>
+  <button (click)="updateSignal()">updateSignal</button>
+
+  <br/>
+  <h2>Derived Signal : {{derived()}}</h2>
 </div>

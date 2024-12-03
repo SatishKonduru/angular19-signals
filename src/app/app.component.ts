@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { BehaviorSubject, combineLatest, debounceTime, interval, map, withLatestFrom } from 'rxjs';
@@ -10,7 +10,7 @@ import { rskSignal } from './rskSignal';
   imports: [CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   title = 'angular19-signals';
@@ -33,10 +33,18 @@ export class AppComponent {
   //   this.colors$.next({y: 'Yelow', o: 'Orange', p: 'Purple'})
   //   this.colorKey$.next('o')
   // }
-  // readonly firstSignal = signal(100)
+  readonly firstSignal = signal(100)
   // readonly secondSignal = signal('Satish')
-  readonly firstSignal = rskSignal('Satish')
+  // readonly firstSignal = rskSignal('Satish')
   constructor(){
     console.log("firstSignal Value: ", this.firstSignal())
   }
+  setSignal(){
+    this.firstSignal.set(1)
+  }
+  updateSignal(){
+    this.firstSignal.update(value => value+1)
+  }
+
+  readonly derived = computed(() => this.firstSignal() * 2)
 }
