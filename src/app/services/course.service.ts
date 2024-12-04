@@ -29,10 +29,7 @@ export class CourseService {
         this.courses = data; // Store fetched data
         return this.courses;
       }),
-      catchError(() => {
-        // Handle error (e.g., return empty array or log error)
-        return of([]);
-      })
+      catchError(() => {return of([]);})
     );
   }
   // Get the courses based on the visible count
