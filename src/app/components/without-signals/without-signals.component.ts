@@ -14,19 +14,23 @@ import {  CourseService } from '../../services/course.service';
 })
 export class WithoutSignalsComponent implements OnInit{
   courseNames : any[] = []
+  courseNames$ : Observable<any>
   private _courseService = inject(CourseService)
   private _changeDetector = inject(ChangeDetectorRef)
+
   ngOnInit(): void {
     this.getCourses()
   }
 
   getCourses(){
-    this._courseService.getCourseNames().subscribe({
-      next: (res: any) =>{
+     this._courseService.getCourseNames().subscribe({
+      next:  (res: any) =>{
         this.courseNames = res
-        console.log("this.courseNames: ", this.courseNames)
+        // this._changeDetector.detectChanges()
       }
     })
+    // this.courseNames$ = this._courseService.getCourseNames()
+
   }
 
 

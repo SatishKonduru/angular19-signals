@@ -6,7 +6,22 @@
       </div>
       <div class="card-body">
         @for(course of courseNames; track course; let i =$index){
-          <span>{{ course.name }} -- {{i}}</span>
+          <div>{{ course.name }}</div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="card">
+      <div class="card-header">
+        Course Names with Observable and Async pipe
+      </div>
+      <div class="card-body">
+        @for(course of courseNames$ | async; track course; let i =$index){
+          <div>{{ course.name }}</div>
         }
       </div>
     </div>
