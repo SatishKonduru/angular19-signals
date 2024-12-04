@@ -4,12 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { BehaviorSubject, combineLatest, debounceTime, interval, map, withLatestFrom } from 'rxjs';
 import { rskSignal } from './rskSignal';
-import { WithoutSignalsComponent } from "./components/without-signals/without-signals.component";
-import { WithSignalsComponent } from "./components/with-signals/with-signals.component";
+
+import { LinkedSignalComponent } from "./components/linked-signal/linked-signal.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, WithSignalsComponent, WithoutSignalsComponent],
+  imports: [RouterOutlet, CommonModule, LinkedSignalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush

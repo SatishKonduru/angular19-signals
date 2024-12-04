@@ -41,6 +41,14 @@ export class CourseService {
     );
 }
 
+getCoursesWithCountForSignal(count: number): Observable<any[]> {
+  return this.getCourseNames().pipe(
+    map((courses) => {
+      return courses.slice(0,count);
+    })
+  );
+}
+
 // Update the number of visible courses
 updateVisibleCount(count: number) {
   this.visibleCount.next(count);
