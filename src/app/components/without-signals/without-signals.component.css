@@ -3,13 +3,10 @@
   justify-content: center;
   padding: 50px 80px;
 }
-.row{
-  width: 500px;
-}
-.card{
-  max-width: 100%;
-  padding: 0;
-
+.btn-section{
+  display: flex;
+  justify-content: center;
+  gap: 10px
 }
 
 
