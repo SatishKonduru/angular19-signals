@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container"> -->
 <!-- <h2>Red: {{(colors$ | async).r}}</h2>
 <h2>Green: {{(colors$ | async).r}}</h2>
 <h2>Blue: {{(colors$ | async).r}}</h2>
@@ -7,13 +7,15 @@
 <button (click)="newColors()">Click Me</button> -->
 <!-- <h5>Selected Color: {{ColorObj[key]}}</h5> -->
   <!-- <button class="nothing-btn" (click)="doNothing()" (mousemove)="doNothing()">Do Nothing</button> -->
-</div>
+<!-- </div> -->
 
-<div class="container">
+<!-- <div class="container">
   <h2>first Signal Value: {{firstSignal()}}</h2>
   <button (click)="setSignal()">setSignal</button>
   <button (click)="updateSignal()">updateSignal</button>
 
   <br/>
   <h2>Derived Signal : {{derived()}}</h2>
-</div>
+</div> -->
+<app-without-signals></app-without-signals>
+<router-outlet></router-outlet>

@@ -1,0 +1,11 @@
+[
+  {"name": "Angular"},
+  {"name": "Angular Material"},
+  {"name": "Bootstrap"},
+  {"name": "Python"},
+  {"name": "NodeJS"},
+  {"name": "Fast API"},
+  {"name": "MySQL"},
+  {"name": "postgreSQL"},
+  {"name": "mongoDB"}
+]
