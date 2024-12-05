@@ -8,10 +8,11 @@ import { rskSignal } from './rskSignal';
 import { LinkedSignalComponent } from "./components/linked-signal/linked-signal.component";
 import { CounterComponent } from "./components/counter/counter.component";
 import {MatButtonModule} from '@angular/material/button';
+import { CounterWithSignalsComponent } from "./components/counter-with-signals/counter-with-signals.component";
 
 @Component({
   selector: 'app-root',
-  imports: [ CommonModule, MatButtonModule, CounterComponent],
+  imports: [CommonModule, MatButtonModule, CounterWithSignalsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
