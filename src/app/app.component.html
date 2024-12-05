@@ -19,5 +19,19 @@
 </div> -->
 <!-- <app-without-signals></app-without-signals> -->
  <!-- <app-with-signals></app-with-signals> -->
-  <app-linked-signal></app-linked-signal>
-<router-outlet></router-outlet>
+  <!-- <app-linked-signal></app-linked-signal> -->
+<div class="container">
+  <div class="tgl-button">
+    <button mat-raised-button (click)="toggleCounter()">Start/Stop Counter</button>
+  </div>
+
+    @if(showCounter){
+      <app-counter></app-counter>
+    }@else {
+      <h6>Counter Stopped</h6>
+    }
+
+
+
+</div>
+

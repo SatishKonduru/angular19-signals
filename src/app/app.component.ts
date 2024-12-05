@@ -6,10 +6,12 @@ import { BehaviorSubject, combineLatest, debounceTime, interval, map, withLatest
 import { rskSignal } from './rskSignal';
 
 import { LinkedSignalComponent } from "./components/linked-signal/linked-signal.component";
+import { CounterComponent } from "./components/counter/counter.component";
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, LinkedSignalComponent],
+  imports: [ CommonModule, MatButtonModule, CounterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -56,4 +58,9 @@ export class AppComponent {
   // }
 
   // readonly derived = computed(() => this.firstSignal() * 2)
+  showCounter = false;
+
+  toggleCounter(){
+    this.showCounter = !this.showCounter
+   }
 }
