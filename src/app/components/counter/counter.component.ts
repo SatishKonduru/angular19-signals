@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {ChangeDetectorRef, Component, DestroyRef, inject, OnDestroy, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, DestroyRef, inject, Injector, OnDestroy, OnInit, runInInjectionContext } from '@angular/core';
 import { interval, Observable, Subscription, tap } from 'rxjs';
 import { counter } from '../../utilityFn';
 
@@ -13,9 +13,10 @@ export class CounterComponent implements OnInit, OnDestroy{
 
   // values : Subscription
   values$ : Observable<any>
-  // private _destroyRef = inject(DestroyRef)
+   private _destroyRef = inject(DestroyRef)
+   private _injector = inject(Injector)
   constructor(){
-   counter()
+  //  counter()
   }
   ngOnInit(): void {
 
@@ -25,10 +26,13 @@ export class CounterComponent implements OnInit, OnDestroy{
     // );
   // this.values = interval(1000).subscribe(console.log)
   // this._destroyRef.onDestroy(() => this.values.unsubscribe())
+  // counter(this._destroyRef)
+  runInInjectionContext(this._injector, () => counter())
 }
 
 ngOnDestroy(): void {
   // this.values.unsubscribe()
+
 
 }
 }
