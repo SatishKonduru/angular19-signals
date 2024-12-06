@@ -20,19 +20,18 @@
 <!-- <app-without-signals></app-without-signals> -->
  <!-- <app-with-signals></app-with-signals> -->
   <!-- <app-linked-signal></app-linked-signal> -->
-<div class="container">
+<!-- <div class="container">
   <div class="tgl-button">
     <button mat-raised-button (click)="toggleCounter()">Start/Stop Counter</button>
   </div>
 
     @if(showCounter){
-      <!-- <app-counter></app-counter> -->
+      <app-counter></app-counter>
        <app-counter-with-signals></app-counter-with-signals>
     }@else {
       <h6>Counter Stopped</h6>
     }
-
-
-
+</div> -->
+<div class="container">
+  <app-reactive-context-with-effect></app-reactive-context-with-effect>
 </div>
-

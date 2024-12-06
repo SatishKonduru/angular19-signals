@@ -9,10 +9,11 @@ import { LinkedSignalComponent } from "./components/linked-signal/linked-signal.
 import { CounterComponent } from "./components/counter/counter.component";
 import {MatButtonModule} from '@angular/material/button';
 import { CounterWithSignalsComponent } from "./components/counter-with-signals/counter-with-signals.component";
+import { ReactiveContextWithEffectComponent } from "./components/reactive-context-with-effect/reactive-context-with-effect.component";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, MatButtonModule, CounterWithSignalsComponent],
+  imports: [CommonModule, MatButtonModule, ReactiveContextWithEffectComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
