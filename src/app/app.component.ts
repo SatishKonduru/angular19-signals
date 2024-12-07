@@ -12,10 +12,11 @@ import { CounterWithSignalsComponent } from "./components/counter-with-signals/c
 import { ReactiveContextWithEffectComponent } from "./components/reactive-context-with-effect/reactive-context-with-effect.component";
 import { RxjsToSignalsComponent } from "./components/rxjs-to-signals/rxjs-to-signals.component";
 import { SignalToRxjsComponent } from "./components/signal-to-rxjs/signal-to-rxjs.component";
+import { SignalImmutablityComponent } from "./components/signal-immutablity/signal-immutablity.component";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, MatButtonModule, SignalToRxjsComponent],
+  imports: [CommonModule, MatButtonModule, SignalImmutablityComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
