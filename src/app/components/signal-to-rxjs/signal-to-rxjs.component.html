@@ -1,0 +1,5 @@
+<mat-chip>Signal to RxJS Observable</mat-chip>
+
+<h2>Search</h2>
+    <input type="text" [value]="searchQuery()" (input)="searchQuery.set($event.target.value)" />
+    <p>Text entered for Search: {{ textForSearch }}</p>

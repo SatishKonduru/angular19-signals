@@ -1,0 +1,12 @@
+<mat-chip>RxJS to Signals</mat-chip>
+
+<h2>User Details</h2>
+@if(user()){
+  <div>
+    <p><strong>Name:</strong> {{ user()?.name }}</p>
+    <p><strong>Email:</strong> {{ user()?.email }}</p>
+  </div>
+}@else {
+  <h6>Loading...</h6>
+}
+
