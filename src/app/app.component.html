@@ -36,5 +36,21 @@
   <app-reactive-context-with-effect></app-reactive-context-with-effect>
 </div> -->
 <div class="container mt-3">
- <app-signal-immutablity></app-signal-immutablity>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter First Number: </mat-label>
+      <input  matInput [(ngModel)]="firstValue">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter Second Number: </mat-label>
+      <input  matInput [(ngModel)]="secondValue">
+    </mat-form-field>
+  </div>
+  <div>
+    <app-input [fValue]="firstValue" [sValue]="secondValue"></app-input>
+  </div>
+
 </div>

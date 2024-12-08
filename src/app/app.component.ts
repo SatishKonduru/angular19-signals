@@ -13,13 +13,16 @@ import { ReactiveContextWithEffectComponent } from "./components/reactive-contex
 import { RxjsToSignalsComponent } from "./components/rxjs-to-signals/rxjs-to-signals.component";
 import { SignalToRxjsComponent } from "./components/signal-to-rxjs/signal-to-rxjs.component";
 import { SignalImmutablityComponent } from "./components/signal-immutablity/signal-immutablity.component";
+import { InputComponent } from "./components/input/input.component";
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, MatButtonModule, SignalImmutablityComponent],
+  imports: [CommonModule, MatButtonModule, InputComponent, MatFormFieldModule, MatInputModule, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   title = 'angular19-signals';
@@ -63,9 +66,12 @@ export class AppComponent {
   // }
 
   // readonly derived = computed(() => this.firstSignal() * 2)
-  showCounter = false;
+  // showCounter = false;
 
-  toggleCounter(){
-    this.showCounter = !this.showCounter
-   }
+  // toggleCounter(){
+  //   this.showCounter = !this.showCounter
+  //  }
+
+  firstValue: number;
+  secondValue: number;
 }
