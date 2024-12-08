@@ -35,7 +35,7 @@
 <!-- <div class="container">
   <app-reactive-context-with-effect></app-reactive-context-with-effect>
 </div> -->
-<div class="container mt-3">
+<!-- <div class="container mt-3">
 
   <div>
     <mat-form-field appearance="outline">
@@ -53,4 +53,8 @@
     <app-input [fValue]="firstValue" [sValue]="secondValue"></app-input>
   </div>
 
+</div> -->
+<div class="container mt-5">
+  App Component:<h4> {{msg}}</h4>
+  <app-output (message)="msg = $event"></app-output>
 </div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, computed, input, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -7,12 +7,16 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
   templateUrl: './input.component.html',
   styleUrl: './input.component.css'
 })
-export class InputComponent implements OnChanges{
-@Input() fValue: number
-@Input() sValue: number
-result : number
+export class InputComponent {
+// @Input() fValue: number
+// @Input() sValue: number
+// result : number
 
-ngOnChanges(): void {
-  this.result = Number(this.fValue) + Number(this.sValue);
-}
+// ngOnChanges(): void {
+//   this.result = Number(this.fValue) + Number(this.sValue);
+// }
+  fValue = input()
+  sValue = input()
+  result = computed(() => Number(this.fValue()) + Number(this.sValue()))
+
 }

@@ -16,10 +16,11 @@ import { SignalImmutablityComponent } from "./components/signal-immutablity/sign
 import { InputComponent } from "./components/input/input.component";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { OutputComponent } from "./components/output/output.component";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, MatButtonModule, InputComponent, MatFormFieldModule, MatInputModule, FormsModule],
+  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, OutputComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   // changeDetection: ChangeDetectionStrategy.OnPush
@@ -74,4 +75,5 @@ export class AppComponent {
 
   firstValue: number;
   secondValue: number;
+  msg: any
 }
