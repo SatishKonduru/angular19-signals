@@ -17,10 +17,12 @@ import { InputComponent } from "./components/input/input.component";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { OutputComponent } from "./components/output/output.component";
+import { TraditionalVcComponent } from "./components/traditional-vc/traditional-vc.component";
+import { SignalsVcComponent } from "./components/signals-vc/signals-vc.component";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, OutputComponent],
+  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, SignalsVcComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   // changeDetection: ChangeDetectionStrategy.OnPush
@@ -73,7 +75,7 @@ export class AppComponent {
   //   this.showCounter = !this.showCounter
   //  }
 
-  firstValue: number;
-  secondValue: number;
-  msg: any
+  // firstValue: number;
+  // secondValue: number;
+  // msg: any
 }
