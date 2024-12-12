@@ -1,2 +1,12 @@
 
 <h5 #header [style.backgroundColor]="colorSignal()" [style.padding]="'20px'" [style.borderRadius]="'15px'" [style.boxShadow]="'0px 4px 8px #000'">Welcome to View Queries with Signals</h5>
+
+@for(item of itemsList; track $index; let i = $index ){
+  <h5
+        #item
+        [style.backgroundColor]="colors[i]()"
+        [style.padding]="'10px'"
+        [style.borderRadius]="'10px'">
+        {{ item }}
+      </h5>
+}
