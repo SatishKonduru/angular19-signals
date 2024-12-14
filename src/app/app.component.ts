@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect, inject, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { BehaviorSubject, combineLatest, debounceTime, interval, map, withLatestFrom } from 'rxjs';
@@ -19,16 +19,18 @@ import {MatInputModule} from '@angular/material/input';
 import { OutputComponent } from "./components/output/output.component";
 import { TraditionalVcComponent } from "./components/traditional-vc/traditional-vc.component";
 import { SignalsVcComponent } from "./components/signals-vc/signals-vc.component";
+import { TraditionalVcChildComponent } from "./components/traditional-vc-child/traditional-vc-child.component";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, SignalsVcComponent],
+  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, TraditionalVcChildComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
   title = 'angular19-signals';
+  changeDetector = inject(ChangeDetectorRef)
   // colors$ = new BehaviorSubject<any>({r: 'Red', g: 'Green', b: 'Blue'})
   // colorKey$ = new BehaviorSubject('r')
   // // slectectedValue$ = combineLatest([this.colors$, this.colorKey$])
@@ -78,4 +80,23 @@ export class AppComponent {
   // firstValue: number;
   // secondValue: number;
   // msg: any
+
+  @ViewChild(TraditionalVcChildComponent) child!: TraditionalVcChildComponent;
+  @ViewChildren(TraditionalVcChildComponent) children!: QueryList<TraditionalVcChildComponent>;
+  // ngOnInit(){
+  //   console.log('Child from parent under OnInit:', this.child.childProperty);
+  // }
+
+  ngAfterViewInit() {
+    console.log('Child from parent under AfterViewInit:', this.child.childProperty);
+    this.children.forEach(c=> console.log("Children from parent under AfterViewInit:", c.childProperty))
+  }
+
+  logChild() {
+    console.log("Child from Parent on Click event: ", this.child.childProperty);
+  }
+
+  logChildren(){
+    console.log(this.children.toArray());
+  }
 }
