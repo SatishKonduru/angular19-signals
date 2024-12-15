@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect, inject, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect, inject, QueryList, Signal, signal, ViewChild, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { BehaviorSubject, combineLatest, debounceTime, interval, map, withLatestFrom } from 'rxjs';
@@ -20,10 +20,11 @@ import { OutputComponent } from "./components/output/output.component";
 import { TraditionalVcComponent } from "./components/traditional-vc/traditional-vc.component";
 import { SignalsVcComponent } from "./components/signals-vc/signals-vc.component";
 import { TraditionalVcChildComponent } from "./components/traditional-vc-child/traditional-vc-child.component";
+import { SignalsVcChildComponent } from "./components/signals-vc-child/signals-vc-child.component";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, TraditionalVcChildComponent],
+  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, SignalsVcChildComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   // changeDetection: ChangeDetectionStrategy.OnPush
@@ -81,22 +82,113 @@ export class AppComponent {
   // secondValue: number;
   // msg: any
 
-  @ViewChild(TraditionalVcChildComponent) child!: TraditionalVcChildComponent;
-  @ViewChildren(TraditionalVcChildComponent) children!: QueryList<TraditionalVcChildComponent>;
-  // ngOnInit(){
-  //   console.log('Child from parent under OnInit:', this.child.childProperty);
+  // @ViewChild(TraditionalVcChildComponent) child!: TraditionalVcChildComponent;
+  // @ViewChildren(TraditionalVcChildComponent) children!: QueryList<TraditionalVcChildComponent>;
+  // // ngOnInit(){
+  // //   console.log('Child from parent under OnInit:', this.child.childProperty);
+  // // }
+
+  // ngAfterViewInit() {
+  //   console.log('Child from parent under AfterViewInit:', this.child.childProperty);
+  //   this.children.forEach(c=> console.log("Children from parent under AfterViewInit:", c.childProperty))
   // }
 
-  ngAfterViewInit() {
-    console.log('Child from parent under AfterViewInit:', this.child.childProperty);
-    this.children.forEach(c=> console.log("Children from parent under AfterViewInit:", c.childProperty))
+  // logChild() {
+  //   console.log("Child from Parent on Click event: ", this.child.childProperty);
+  // }
+
+  // logChildren(){
+  //   console.log(this.children.toArray());
+  // }
+  // @ViewChild(SignalsVcChildComponent, { read: signal, static: true }) childSignal!: Signal<SignalsVcChildComponent | null>;
+  // @ViewChild(SignalsVcChildComponent) childComponent!: SignalsVcChildComponent;
+  // childSignal = signal<any>(null)
+  // dummy = effect(() => {
+  //   console.log(this.childSignal.set(this.childComponent.childProperty))
+  // })
+  // logChild(){
+  //   console.log(this.childSignal.set(this.childComponent.childProperty))
+  // }
+
+// usecase - 1
+// @ViewChild(SignalsVcChildComponent) childComponent!: SignalsVcChildComponent;
+
+//   // Signal to store the child property value
+//   childSignal = signal<string | null>(null);
+
+//   // Effect to react to changes in the signal
+//   dummy = effect(() => {
+//     const signalValue = this.childSignal();
+//     console.log('Effect Triggered:', signalValue);
+//   });
+
+//   // Lifecycle hook to ensure childComponent is initialized
+//   ngAfterViewInit() {
+//     if (this.childComponent) {
+//       // Update the signal initially
+//       this.childSignal.set(this.childComponent.childProperty);
+//       console.log('In AfterViewInit:', this.childSignal());
+//     } else {
+//       console.error('Child component is not initialized in AfterViewInit');
+//     }
+//   }
+
+//   logChild() {
+//     if (this.childComponent) {
+//       this.childSignal.set(this.childComponent.childProperty);
+//       console.log('Log Child:', this.childSignal());
+//     } else {
+//       console.error('Child component is not available');
+//     }
+//   }
+
+
+  // usecase -2
+  // @ViewChild(SignalsVcChildComponent) set childComponent(instance: SignalsVcChildComponent | undefined) {
+  //   if (instance) {
+  //     this.childSignal.set(instance.childProperty);
+  //   }
+  // }
+
+  // // Signal to hold the child property value
+  // childSignal = signal<string | null>(null);
+
+  // // Effect to track changes to the signal
+  // dummy = effect(() => {
+  //   console.log('Signal updated:', this.childSignal());
+  // });
+
+  // logChild() {
+  //   console.log('Child Signal Value:', this.childSignal());
+  // }
+
+
+   // Use a setter for @ViewChildren to update the signal reactively
+  @ViewChildren(SignalsVcChildComponent) set childComponents(components: QueryList<SignalsVcChildComponent>) {
+    // This setter is automatically called when the QueryList updates
+    if (components) {
+      const properties = components.map(child => child.childProperty);
+      this.childPropertiesSignal.set(properties); // Update the signal
+    }
   }
 
-  logChild() {
-    console.log("Child from Parent on Click event: ", this.child.childProperty);
+  // Signal to store the properties of child components
+  childPropertiesSignal = signal<string[]>([]);
+
+  // // Effect to react to changes in the signal
+  // constructor() {
+  //   effect(() => {
+  //     console.log('Effect Triggered: Child Properties Updated:', this.childPropertiesSignal());
+  //   });
+  // }
+
+ dummy = effect(() => {
+  console.log('Effect Triggered: Child Properties Updated:', this.childPropertiesSignal());
+});
+
+  // Log child properties on button click
+  logChildren() {
+    console.log('Log Children:', this.childPropertiesSignal());
   }
 
-  logChildren(){
-    console.log(this.children.toArray());
-  }
 }

@@ -59,10 +59,20 @@
   <app-output (message)="msg = $event"></app-output>
 </div> -->
 
-<div class="container mt-5">
+<!-- <div class="container mt-5">
   <app-traditional-vc-child></app-traditional-vc-child>
   <app-traditional-vc-child></app-traditional-vc-child>
   <button class="nothing-btn" (click)="logChild()">Log Child</button>
   <br>
+  <button class="nothing-btn" (click)="logChildren()">Log Children</button>
+</div> -->
+<!-- <div class="container mt-5">
+  <app-signals-vc-child></app-signals-vc-child>
+  <button class="nothing-btn" (click)="logChild()">Log Child</button>
+</div> -->
+<div class="container mt-5">
+  <app-signals-vc-child></app-signals-vc-child>
+  <app-signals-vc-child></app-signals-vc-child>
+  <app-signals-vc-child></app-signals-vc-child>
   <button class="nothing-btn" (click)="logChildren()">Log Children</button>
 </div>
