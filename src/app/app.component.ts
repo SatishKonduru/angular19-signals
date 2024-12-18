@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect, inject, QueryList, Signal, signal, ViewChild, ViewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, ContentChild, effect, inject, QueryList, Signal, signal, ViewChild, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { BehaviorSubject, combineLatest, debounceTime, interval, map, withLatestFrom } from 'rxjs';
@@ -21,10 +21,11 @@ import { TraditionalVcComponent } from "./components/traditional-vc/traditional-
 import { SignalsVcComponent } from "./components/signals-vc/signals-vc.component";
 import { TraditionalVcChildComponent } from "./components/traditional-vc-child/traditional-vc-child.component";
 import { SignalsVcChildComponent } from "./components/signals-vc-child/signals-vc-child.component";
+import { CardComponent } from "./components/card/card.component";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, SignalsVcChildComponent],
+  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, CardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   // changeDetection: ChangeDetectionStrategy.OnPush
@@ -164,16 +165,16 @@ export class AppComponent {
 
 
    // Use a setter for @ViewChildren to update the signal reactively
-  @ViewChildren(SignalsVcChildComponent) set childComponents(components: QueryList<SignalsVcChildComponent>) {
+  // @ViewChildren(SignalsVcChildComponent) set childComponents(components: QueryList<SignalsVcChildComponent>) {
     // This setter is automatically called when the QueryList updates
-    if (components) {
-      const properties = components.map(child => child.childProperty);
-      this.childPropertiesSignal.set(properties); // Update the signal
-    }
-  }
+  //   if (components) {
+  //     const properties = components.map(child => child.childProperty);
+  //     this.childPropertiesSignal.set(properties); // Update the signal
+  //   }
+  // }
 
   // Signal to store the properties of child components
-  childPropertiesSignal = signal<string[]>([]);
+  // childPropertiesSignal = signal<string[]>([]);
 
   // // Effect to react to changes in the signal
   // constructor() {
@@ -182,13 +183,13 @@ export class AppComponent {
   //   });
   // }
 
- dummy = effect(() => {
-  console.log('Effect Triggered: Child Properties Updated:', this.childPropertiesSignal());
-});
+//  dummy = effect(() => {
+//   console.log('Effect Triggered: Child Properties Updated:', this.childPropertiesSignal());
+// });
 
-  // Log child properties on button click
-  logChildren() {
-    console.log('Log Children:', this.childPropertiesSignal());
-  }
+//   // Log child properties on button click
+//   logChildren() {
+//     console.log('Log Children:', this.childPropertiesSignal());
+//   }
 
 }
