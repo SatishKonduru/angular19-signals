@@ -23,10 +23,11 @@ import { TraditionalVcChildComponent } from "./components/traditional-vc-child/t
 import { SignalsVcChildComponent } from "./components/signals-vc-child/signals-vc-child.component";
 import { CardComponent } from "./components/card/card.component";
 import { SignalHostComponent } from "./components/signal-host/signal-host.component";
+import { SignalHostListenerComponent } from "./components/signal-host-listener/signal-host-listener.component";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, SignalHostComponent],
+  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, SignalHostListenerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   // changeDetection: ChangeDetectionStrategy.OnPush

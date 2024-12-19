@@ -1,0 +1,20 @@
+.nothing-btn{
+  padding: 10px 40px;
+  background-color: orangered;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 5px 8px #000;
+}
+.clickable-area {
+  width: 700px;
+  height: 100px;
+  background-color: lightblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
