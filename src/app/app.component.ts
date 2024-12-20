@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, ContentChild, effect, inject, QueryList, Signal, signal, ViewChild, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { BehaviorSubject, combineLatest, debounceTime, interval, map, withLatestFrom } from 'rxjs';
 import { rskSignal } from './rskSignal';
 
@@ -27,7 +27,7 @@ import { SignalHostListenerComponent } from "./components/signal-host-listener/s
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, SignalHostListenerComponent],
+  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   // changeDetection: ChangeDetectionStrategy.OnPush
@@ -193,5 +193,9 @@ export class AppComponent {
 //   logChildren() {
 //     console.log('Log Children:', this.childPropertiesSignal());
 //   }
+// private _router = inject(Router)
+// gotoProfile(){
+//   this._router.navigate(['/profile'])
 
+// }
 }
