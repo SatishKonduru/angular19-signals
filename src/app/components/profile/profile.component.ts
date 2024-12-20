@@ -10,32 +10,18 @@ import { map } from 'rxjs';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  // @Input() name: any
-  // @Input() age: any
-  // name : any
-  // age: any
-  // private _activatedRoute = inject(ActivatedRoute)
-  // constructor(){
-  //  this._activatedRoute.data.subscribe(data => {
-  //     this.name = data['name']
-  //     this.age = data['age']
-  //   })
-  // }
-  // Define signals for name and age
-  // @Input({ transform: (value : string) => signal(value) }) name!: Signal<string>;
-  // @Input({ transform: (value : number) => signal(value) }) age!: Signal<number>;
-  private route = inject(ActivatedRoute);
- // Convert route.data observable to signal
 
-  // // Define signals for name and age
-  // name: Signal<string> = signal(this.route.snapshot.data['name']);
-  // age: Signal<number> = signal(this.route.snapshot.data['age']);
+  private _activatedRoute = inject(ActivatedRoute);
 
- // Convert route.data observable to signal
- routeData = toSignal(this.route.data);
-  // Define computed signals for name and age
+ routeData = toSignal(this._activatedRoute.data);
+
   name: Signal<string> = computed(() => this.routeData()?.name ?? '');
   age: Signal<number> = computed(() => this.routeData()?.age ?? 0);
+  id: Signal<string | null> = toSignal(this._activatedRoute.paramMap.pipe(map((params) => params.get('id'))));
 
 
+ userDetails: Signal<string> = computed(() => {
+  const userId = this.id();
+  return userId ? `User Details for ID: ${userId}` : 'No User ID Found';
+});
 }
