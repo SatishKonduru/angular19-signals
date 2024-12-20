@@ -17,11 +17,24 @@ export class ProfileComponent {
 
   name: Signal<string> = computed(() => this.routeData()?.name ?? '');
   age: Signal<number> = computed(() => this.routeData()?.age ?? 0);
-  id: Signal<string | null> = toSignal(this._activatedRoute.paramMap.pipe(map((params) => params.get('id'))));
+  // id: Signal<string | null> = toSignal(this._activatedRoute.paramMap.pipe(map((params) => params.get('id'))));
 
 
  userDetails: Signal<string> = computed(() => {
   const userId = this.id();
   return userId ? `User Details for ID: ${userId}` : 'No User ID Found';
+});
+
+queryParams = toSignal(this._activatedRoute.queryParamMap);
+// Extract individual query params as computed signals
+id = computed(() => this.queryParams()?.get('id') ?? null);
+tab = computed(() => this.queryParams()?.get('tab') ?? null);
+// Compute a message based on the query params
+message: Signal<string> = computed(() => {
+  const id = this.id();
+  const tab = this.tab();
+  return id && tab
+    ? `Viewing Tab: ${tab} for User ID: ${id}`
+    : 'No ID or Tab specified in query params';
 });
 }

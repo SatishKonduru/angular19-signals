@@ -13,5 +13,9 @@ export const routes: Routes = [
     component: ProfileComponent,
     data: {name: 'Satish Konduru', age: 43},
   },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  },
 
 ];
