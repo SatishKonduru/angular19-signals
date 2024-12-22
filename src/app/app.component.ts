@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, ContentChild, effect, inject, QueryList, Signal, signal, ViewChild, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
-import { BehaviorSubject, combineLatest, debounceTime, interval, map, withLatestFrom } from 'rxjs';
+import { BehaviorSubject, combineLatest, debounceTime, interval, map, Subscription, withLatestFrom } from 'rxjs';
 import { rskSignal } from './rskSignal';
 
 import { LinkedSignalComponent } from "./components/linked-signal/linked-signal.component";
@@ -24,6 +24,7 @@ import { SignalsVcChildComponent } from "./components/signals-vc-child/signals-v
 import { CardComponent } from "./components/card/card.component";
 import { SignalHostComponent } from "./components/signal-host/signal-host.component";
 import { SignalHostListenerComponent } from "./components/signal-host-listener/signal-host-listener.component";
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,7 @@ import { SignalHostListenerComponent } from "./components/signal-host-listener/s
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   // changeDetection: ChangeDetectionStrategy.OnPush
+  providers: [AuthService]
 })
 export class AppComponent {
   title = 'angular19-signals';
@@ -198,4 +200,31 @@ export class AppComponent {
 //   this._router.navigate(['/profile'])
 
 // }
+
+// user: User | null = null;
+// private subscription: Subscription;
+// constructor(private authService: AuthService) {
+//   // Subscribe to the user state
+//   this.subscription = this.authService.user$.subscribe((user) => {
+//     this.user = user;
+//   });
+// }
+// login() {
+//   // Simulate a login action
+//   const user: User = { id: 1, name: 'Satish Konduru' };
+//   this.authService.login(user);
+// }
+
+// logout() {
+//   this.authService.logout();
+// }
+
+// ngOnDestroy() {
+//   // Clean up subscription to prevent memory leaks
+//   this.subscription.unsubscribe();
+// }
+ authService = inject(AuthService)
+login() {
+  this.authService.login({ id: 1, name: 'Satish Konduru' });
+}
 }

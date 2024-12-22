@@ -103,7 +103,21 @@
 <!-- <div class="container mt-5">
   <app-signal-host-listener></app-signal-host-listener>
 </div> -->
-<div class="container mt-5">
+<!-- <div class="container mt-5">
   <button class="nothing-btn" routerLink="/profile">Profile</button>
+</div> -->
+<div class="container mt-5">
+  @if(authService.isLoggedIn()){
+    <h4>Welcome, {{ authService.user().name }}!</h4>
+    <button class="nothing-btn" (click)="authService.logout()">Logout</button>
+  }
+  @else {
+    <button class="nothing-btn" (click)="login()">Login</button>
+  }
 </div>
+
+
+
+
+
 <router-outlet></router-outlet>
