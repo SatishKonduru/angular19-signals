@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, ContentChild, effect, inject, QueryList, Signal, signal, ViewChild, ViewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, ContentChild, effect, inject, QueryList, resource, Signal, signal, ViewChild, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { BehaviorSubject, combineLatest, debounceTime, interval, map, Subscription, withLatestFrom } from 'rxjs';
@@ -25,10 +25,13 @@ import { CardComponent } from "./components/card/card.component";
 import { SignalHostComponent } from "./components/signal-host/signal-host.component";
 import { SignalHostListenerComponent } from "./components/signal-host-listener/signal-host-listener.component";
 import { AuthService } from './services/auth.service';
+import { HttpClient } from '@angular/common/http';
+import { rxResource } from '@angular/core/rxjs-interop';
+
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, RouterModule],
+  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, FormsModule, RouterModule, ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   // changeDetection: ChangeDetectionStrategy.OnPush
@@ -223,8 +226,37 @@ export class AppComponent {
 //   // Clean up subscription to prevent memory leaks
 //   this.subscription.unsubscribe();
 // }
- authService = inject(AuthService)
-login() {
-  this.authService.login({ id: 1, name: 'Satish Konduru' });
-}
+//  authService = inject(AuthService)
+// login() {
+//   this.authService.login({ id: 1, name: 'Satish Konduru' });
+// }
+
+// data: string | null = null;
+
+//   ngOnInit() {
+//     this.fetchData();
+//   }
+
+//   async fetchData() {
+//     try {
+//       const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+//       const result = await response.json();
+//       this.data = result.title;
+//       this.changeDetector.detectChanges()
+//     } catch (error) {
+//       console.error('Error fetching data:', error);
+//     }
+//   }
+
+
+  // resource API
+  // resourceData = resource({
+  //   loader: () => fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json() as Promise<any>)
+  // })
+  private _http = inject(HttpClient)
+  rxResourceData = rxResource({
+    loader: () => this._http.get<any>('https://jsonplaceholder.typicode.com/users')
+  })
+
+
 }

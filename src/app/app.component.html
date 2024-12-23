@@ -106,7 +106,7 @@
 <!-- <div class="container mt-5">
   <button class="nothing-btn" routerLink="/profile">Profile</button>
 </div> -->
-<div class="container mt-5">
+<!-- <div class="container mt-5">
   @if(authService.isLoggedIn()){
     <h4>Welcome, {{ authService.user().name }}!</h4>
     <button class="nothing-btn" (click)="authService.logout()">Logout</button>
@@ -116,8 +116,31 @@
   }
 </div>
 
-
-
-
-
+ -->
+<!-- <div class="container mt-5">
+  @if(data){
+    <h4>Data: {{ data }}</h4>
+  }
+  @else {
+    <h6>Loading...</h6>
+  }
+</div> -->
+<div class="container mt-5">
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(user of rxResourceData.value(); track user){
+        <tr>
+          <td>{{user.id}}</td>
+          <td>{{user.name}}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
 <router-outlet></router-outlet>
