@@ -125,7 +125,7 @@
     <h6>Loading...</h6>
   }
 </div> -->
-<div class="container mt-5">
+<!-- <div class="container mt-5">
   <table>
     <thead>
       <tr>
@@ -142,5 +142,24 @@
       }
     </tbody>
   </table>
+</div> -->
+
+<!-- <div class="container mt-5">
+  <div class="toolbar">
+    <mat-form-field appearance="outline">
+      <mat-label>Search...</mat-label>
+      <input matInput #searchBox (input)="keyword.set(searchBox.value)">
+    </mat-form-field>
+   @if(results.isLoading()){<h6>Loading...</h6>}
+  </div>
+  <button class="nothing-btn" (click)="resetResource()">Reset Resource</button>
+
 </div>
+
+
+<div class="results">
+  @for(color of results.value(); track color.name) {
+      <div class="item" [style.background]="color.code">{{color.name}}</div>
+  }
+</div> -->
 <router-outlet></router-outlet>

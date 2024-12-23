@@ -27,6 +27,8 @@ import { SignalHostListenerComponent } from "./components/signal-host-listener/s
 import { AuthService } from './services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { SearchService } from './services/search.service';
+
 
 
 @Component({
@@ -253,10 +255,38 @@ export class AppComponent {
   // resourceData = resource({
   //   loader: () => fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json() as Promise<any>)
   // })
-  private _http = inject(HttpClient)
-  rxResourceData = rxResource({
-    loader: () => this._http.get<any>('https://jsonplaceholder.typicode.com/users')
-  })
+  // private _http = inject(HttpClient)
+  // rxResourceData = rxResource({
+  //   loader: () => this._http.get<any>('https://jsonplaceholder.typicode.com/users')
+  // })
+
+// resource() api with Promise
+// readonly service = inject(SearchService);
+// readonly keyword = signal('');
+
+// readonly results = resource({
+//   request: () => (this.keyword()),
+//   loader: (obj => this.service.search(obj.request, obj.abortSignal))
+// });
+
+// readonly results = rxResource({
+//   request: () => (this.keyword()),
+//   loader: (obj => this.service.rxSearch(obj.request))
+// })
+
+// constructor() {
+//   effect(() => {
+//     console.log('resource status', this.results.status());
+//   });
+// }
+
+// resetResource() {
+//   this.results.set([
+//     { name: 'Red', code: '#FF0000' },
+//     { name: 'Green', code: '#00FF00' },
+//     { name: 'Blue', code: '#0000FF' }
+//   ])
+// }
 
 
 }

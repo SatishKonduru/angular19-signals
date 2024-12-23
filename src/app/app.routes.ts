@@ -23,6 +23,11 @@ export const routes: Routes = [
     path: 'profile/:id',
     component: ProfileComponent,
     resolve: { user: userResolver }
+  },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
   }
 
 ];
